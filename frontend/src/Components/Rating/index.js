@@ -1,5 +1,7 @@
 //https://dev.to/michaelburrows/create-a-custom-react-star-rating-component-5o6
 import React, { useState } from "react";
+import "./styles.css";
+
 
 const StarRating = () => {
   const [rating, setRating] = useState(0);

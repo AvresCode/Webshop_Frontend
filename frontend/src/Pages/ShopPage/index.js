@@ -2,6 +2,9 @@ import {useEffect, useState} from "react"
 import axios from "axios"
 import "./style.css"
 import ProductBlock from "./ProductBlock";
+import StarRating from "./rating";
+//import StarRating from "./Components/Rating";
+
 
 const ShopPage = () => {
 
@@ -36,7 +39,7 @@ const filterCategories =
 
   return <div className="ShopPage">
 
-   <div className="sidebar-items"> <input
+   <div className="sidebar-items"> <div><input
   type="checkbox"
   value="Electronics"
   onChange={(e) => {
@@ -87,7 +90,8 @@ const filterCategories =
 
     </div>
     <div>Women's Clothing</div>
-
+    <div> <StarRating/> </div>
+    </div>
     <div className="product-block">
 
 {filterCategories.map((product, index) => {
