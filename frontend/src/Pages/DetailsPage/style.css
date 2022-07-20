@@ -1,0 +1,72 @@
+h1 {
+  font-weight: 400;
+}
+.second-container {
+  text-align: left;
+  column-span: all;
+}
+
+.description {
+  color: #a9acc6;
+  font-size: 20px;
+  text-align: left;
+}
+.add-review {
+  text-align: center;
+  margin: 10px;
+  outline: none;
+  border-radius: 15px;
+  border-radius: 10px;
+  font: inherit;
+  background: none;
+  padding: 5px;
+  border: 1px solid black;
+}
+
+.icon-separation {
+  margin-right: 12px;
+}
+
+.favorite {
+  text-align: center;
+  margin: 10px;
+  outline: none;
+  border-radius: 15px;
+  border-radius: 10px;
+  font: inherit;
+  background: none;
+  padding: 8px;
+  border: 1px solid black;
+}
+
+.button-add-to-card {
+  background-color: #ff3eb2;
+  color: white;
+  text-align: center;
+  margin: 10px;
+  outline: none;
+  border-radius: 15px;
+  border-radius: 10px;
+  font: inherit;
+  padding: 8px;
+  border: none;
+}
+
+.price {
+  font-weight: 400;
+  text-align: left;
+}
+
+.product-title {
+  text-align: left;
+  color: #0d134e;
+}
+.product-img {
+  width: 300px;
+  padding: 70px;
+}
+.product-container {
+  display: flex;
+  align-items: center;
+  padding: 50px;
+}
