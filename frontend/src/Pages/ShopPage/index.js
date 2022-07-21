@@ -1,120 +1,99 @@
-import {useEffect, useState} from "react"
-import axios from "axios"
-import "./style.css"
+import { useEffect, useState } from "react";
+import axios from "axios";
+import "./style.css";
 import ProductBlock from "./ProductBlock";
-import StarRating from "./rating";
+
 //import StarRating from "./Components/Rating";
 
-
 const ShopPage = () => {
+  const [products, setProducts] = useState([]);
 
-const[products, setProducts] = useState([]);
+  //sidebar elements
+  const [category, setCategory] = useState([]);
+  const [rating, setRating] = useState([]);
+  const [price, setPrice] = useState([]);
 
-//sidebar elements
-const [category, setCategory] = useState([]);
-const [rating, setRating] = useState([]);
-const [price, setPrice] = useState([])
+  const getProducts = async () => {
+    try {
+      const response = await axios.get("http://localhost:4000/products");
+      setProducts(response.data);
+      console.log(response);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
 
-const getProducts = async () => {
-  try{
-      const response = await axios.get('http://localhost:4000/products')
-      console.log(response)
-      setProducts(response.data)
+  useEffect(() => {
+    getProducts();
+  }, []);
 
-  } catch(e){
-    console.log(e.message)
-  }
-}
- 
-useEffect(() => {
-  getProducts();
-}, []);
-
-const filterCategories =
+  const filterCategories =
     category.length === 0
       ? [...products]
       : [...products].filter((product) => {
-          return product.category.title === category;
+          //return product.category.title === category;
+          return category.includes(product.category.title);
         });
 
-  return <div className="ShopPage">
+  const categoryTypes = [
+    "Electronics",
+    "Jewelery",
+    "Men's Clothing",
+    "Women's Clothing",
+  ];
 
-   <div className="sidebar-items"> <div><input
-  type="checkbox"
-  value="Electronics"
-  onChange={(e) => {
-    if (e.target.checked) {
-      setCategory(e.target.value);
-    } else {
-      setCategory([]);
-    } }} />
+  // console.log("category", category);
+  // console.log("products", filterCategories);
+  // console.log("lengths", products.length, filterCategories.length);
+  return (
+    <div className="ShopPage">
+      <div className="sidebar">
+        <div className="sidebarItems">
+          <p> Categories</p>{" "}
+          {categoryTypes.map((type) => (
+            <>
+              <div className="sidebarCategory">
+                <input
+                  type="checkbox"
+                  value={type}
+                  checked={category.includes(type)}
+                  //checked={category === type}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      //setCategory(e.target.value); // now i need to add to an array;
+                      setCategory([...category, e.target.value]);
+                    } else {
+                      //setCategory([]); // I want to remove THIS categoryfrom the array
+                      setCategory(
+                        category.filter((element) => element !== e.target.value)
+                      );
+                    }
+                  }}
+                />
 
+                {type}
+              </div>
+            </>
+          ))}
+        </div>
+      </div>
+      <div className="product-block">
+        {filterCategories.map((product, index) => {
+          return (
+            <ProductBlock
+              key={index}
+              id={product.id}
+              title={product.title}
+              price={product.price}
+              rating={product.rating}
+              description={product.description}
+              mainImage={product.mainImage}
+            />
+          );
+        })}
+      </div>
     </div>
-    <div>Electronics</div>
-
-    <div> <input
-  type="checkbox"
-  value="Jewelery"
-  onChange={(e) => {
-    if (e.target.checked) {
-      setCategory(e.target.value);
-    } else {
-      setCategory([]);
-    } }} />
-
-    </div>
-    <div>Jewelery</div>
-
-    <div> <input
-  type="checkbox"
-  value="Men's Clothing"
-  onChange={(e) => {
-    if (e.target.checked) {
-      setCategory(e.target.value);
-    } else {
-      setCategory([]);
-    } }} />
-
-    </div>
-    <div>Men's Clothing</div>
-
-    <div> <input
-  type="checkbox"
-  value="Women's Clothing"
-  onChange={(e) => {
-    if (e.target.checked) {
-      setCategory(e.target.value);
-    } else {
-      setCategory([]);
-    } }} />
-
-    </div>
-    <div>Women's Clothing</div>
-    <div> <StarRating/> </div>
-    </div>
-    <div className="product-block">
-
-{filterCategories.map((product, index) => {
-
-              return (
-                
-                  <ProductBlock
-                    key={index}
-                    id={product.id}
-                    title={product.title}
-                    price={product.price}
-                    rating={product.rating}
-                    description={product.description}
-                    mainImage={product.mainImage}
-                   
-                  />
-                
-              );
-            })}
-    
-       </div> 
-    </div>;
-
+  );
 };
 
 export default ShopPage;
