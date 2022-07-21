@@ -1,0 +1,68 @@
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.on {
+  color: rgb(203, 34, 34);
+}
+.off {
+  color: #ccc;
+}
+
+.ShopPage {
+  display: flex;
+  margin: 5vh 10vw;
+
+  padding-top: 5vh;
+  font-family: "Lato";
+  font-size: 1.5vw;
+}
+
+.product-block {
+  flex: 4;
+  margin: 3vh 3vw;
+}
+
+.sidebar {
+  flex: 1;
+}
+.sidebarItems {
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 2vh;
+}
+
+.sidebarCategory {
+  display: flex;
+  height: 25vh;
+}
+
+.product-display {
+  display: flex;
+  margin-bottom: 6vw;
+  height: 25vh;
+}
+
+.image-container {
+  width: 30vw;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.text-container-items {
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.icons-display-block {
+  padding-right: 2vw;
+}
