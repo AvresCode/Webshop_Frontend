@@ -22,6 +22,12 @@ const NavLinks = () => {
       >
         details
       </NavLink>
+      <NavLink
+        to="/signup"
+        style={({ isActive }) => (isActive ? { color: "white" } : undefined)}
+      >
+        Signup
+      </NavLink>
     </div>
   );
 };
