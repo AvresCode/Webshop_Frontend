@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
 import ReactStars from "react-rating-stars-component";
+import Reviews from "../Components/Reviews";
 
 const DetailsPage = () => {
   const [details, setdetails] = useState(null);

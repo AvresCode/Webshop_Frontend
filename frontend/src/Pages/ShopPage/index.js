@@ -3,8 +3,6 @@ import axios from "axios";
 import "./style.css";
 import ProductBlock from "./ProductBlock";
 
-//import StarRating from "./Components/Rating";
-
 const ShopPage = () => {
   const [products, setProducts] = useState([]);
 
