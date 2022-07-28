@@ -15,7 +15,7 @@ const DetailsPage = () => {
       const proDetailsResponse = await axios.get(
         `http://localhost:4000/products/${prodId}`
       );
-      console.log(proDetailsResponse.data);
+      // console.log(proDetailsResponse.data);
       setdetails(proDetailsResponse.data);
     };
     getProDetailsAPI();

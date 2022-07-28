@@ -21,18 +21,51 @@ const Reviews = (props) => {
 
   const reloadComponent = () => window.location.reload(false);
 
+  const submitReview = async (e) => {
+    e.preventDefault();
+    setModal(!modal);
+    reloadComponent();
+
+    try {
+      await axios.post("http://localhost:4000/products/:productId/review", {
+        userId: 1,
+        productId: props.productId,
+        text: text,
+      });
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
   return (
     <div>
-      <button onClick={toggleModal}>{props.buttonName}</button>
+      <button onClick={toggleModal} className="button">
+        {props.buttonName}
+      </button>
       {modal && (
         <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>
           <div className="modal-content">
-            <div>
-              {" "}
-              <StarRating />
-            </div>
-            <div>ffreowsjjajj</div>
+            <form onSubmit={submitReview}>
+              <div className="modal-rating">
+                <div>Rate this product: </div>
+                <div>
+                  <StarRating />
+                </div>
+              </div>{" "}
+              <textarea
+                className="modal-review"
+                type="text"
+                placeholder="Type your review"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+              />
+              <br />
+              <button type="submit" className="button">
+                {" "}
+                Submit
+              </button>
+            </form>
           </div>
         </div>
       )}
