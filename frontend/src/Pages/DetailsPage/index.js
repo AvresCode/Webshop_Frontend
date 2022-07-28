@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
 import ReactStars from "react-rating-stars-component";
-import Reviews from "../Components/Reviews";
+import Reviews from "../../Components/Reviews/Modal";
 
 const DetailsPage = () => {
   const [details, setdetails] = useState(null);
@@ -35,13 +35,21 @@ const DetailsPage = () => {
             <div className="product-title">
               <h1>{details.title}</h1>
               <p>
-                <ReactStars
-                  count={5}
-                  size={24}
-                  activeColor="#ffd700"
-                  value={details.rating}
-                />
-                <button className="add-review">Add Review</button>
+                <div>
+                  <ReactStars
+                    count={5}
+                    size={24}
+                    activeColor="#ffd700"
+                    value={details.rating}
+                  />
+                </div>
+
+                <div>
+                  <button className="add-review">Add Review</button>{" "}
+                </div>
+                <div>
+                  <Reviews buttonName={"Add Review"} productId={params.id} />
+                </div>
               </p>
             </div>
             <div>

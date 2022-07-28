@@ -1,7 +1,8 @@
 //https://dev.to/michaelburrows/create-a-custom-react-star-rating-component-5o6
+//https://www.w3schools.com/charsets/ref_utf_symbols.asp  //9733: HTML unicode for star
 import React, { useState } from "react";
-import "./styles.css";
 
+import "./style.css";
 
 const StarRating = () => {
   const [rating, setRating] = useState(0);
