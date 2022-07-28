@@ -2,8 +2,9 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
-import ReactStars from "react-rating-stars-component";
+//import ReactStars from "react-rating-stars-component";
 import Reviews from "../../Components/Reviews/Modal";
+import StarRating from "../ShopPage/rating";
 
 const DetailsPage = () => {
   const [details, setdetails] = useState(null);
@@ -36,17 +37,12 @@ const DetailsPage = () => {
               <h1>{details.title}</h1>
               <p>
                 <div>
-                  <ReactStars
-                    count={5}
-                    size={24}
-                    activeColor="#ffd700"
-                    value={details.rating}
-                  />
+                  <StarRating rating={details.rating} />
                 </div>
 
-                <div>
+                {/* <div>
                   <button className="add-review">Add Review</button>{" "}
-                </div>
+                </div>*/}
                 <div>
                   <Reviews buttonName={"Add Review"} productId={params.id} />
                 </div>
