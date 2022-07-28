@@ -7,37 +7,37 @@ import Reviews from "../../Components/Reviews/Modal";
 import StarRating from "../ShopPage/rating";
 
 const DetailsPage = () => {
-  const [details, setdetails] = useState(null);
+  const [products, setProducts] = useState(null);
   const params = useParams();
   useEffect(() => {
-    const getProDetailsAPI = async () => {
+    const getProducts = async () => {
       const prodId = params.id;
-      const proDetailsResponse = await axios.get(
+      const response = await axios.get(
         `http://localhost:4000/products/${prodId}`
       );
-      // console.log(proDetailsResponse.data);
-      setdetails(proDetailsResponse.data);
+
+      setProducts(response.data);
     };
-    getProDetailsAPI();
+    getProducts();
   });
 
   return (
     <div>
-      {details ? (
+      {products ? (
         <div className="product-container">
           <div>
             <img
               className="product-img"
-              src={details.mainImage}
+              src={products.mainImage}
               alt="product"
             />
           </div>
           <div>
             <div className="product-title">
-              <h1>{details.title}</h1>
+              <h1>{products.title}</h1>
               <p>
                 <div>
-                  <StarRating rating={details.rating} />
+                  <StarRating rating={products.rating} />
                 </div>
 
                 {/* <div>
@@ -49,11 +49,11 @@ const DetailsPage = () => {
               </p>
             </div>
             <div>
-              <h2 className="price">€{details.price}</h2>
+              <h2 className="price">€{products.price}</h2>
             </div>
             <div className="second-container">
               <p></p>
-              <p className="description">{details.description}</p>
+              <p className="description">{products.description}</p>
               <button className="button-add-to-card">
                 <img
                   className="icon-separation"
