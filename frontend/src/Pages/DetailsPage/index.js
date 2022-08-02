@@ -9,6 +9,7 @@ import ReviewBlock from "../../Components/Reviews/ReviewBlock";
 
 const DetailsPage = () => {
   const [products, setProducts] = useState(null);
+  const [reviews, setReviews] = useState(null);
   const params = useParams();
   useEffect(() => {
     const getProducts = async () => {
@@ -18,6 +19,7 @@ const DetailsPage = () => {
       );
 
       setProducts(response.data);
+      setReviews(response.data.reviews);
     };
     getProducts();
   }, []);
@@ -79,7 +81,13 @@ const DetailsPage = () => {
             </div>
           </div>
           <div>
-            <ReviewBlock />
+            <ul>
+              {reviews
+                ? reviews.map((review, index) => (
+                    <li key={index}> {review.text}</li>
+                  ))
+                : "No review yet"}
+            </ul>
           </div>
         </div>
       ) : (
