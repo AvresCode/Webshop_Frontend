@@ -5,6 +5,7 @@ import "./style.css";
 //import ReactStars from "react-rating-stars-component";
 import Reviews from "../../Components/Reviews/Modal";
 import StarRating from "../ShopPage/rating";
+import ReviewBlock from "../../Components/Reviews/ReviewBlock";
 
 const DetailsPage = () => {
   const [products, setProducts] = useState(null);
@@ -19,7 +20,7 @@ const DetailsPage = () => {
       setProducts(response.data);
     };
     getProducts();
-  });
+  }, []);
 
   return (
     <div>
@@ -76,6 +77,9 @@ const DetailsPage = () => {
                 </p>
               </div>
             </div>
+          </div>
+          <div>
+            <ReviewBlock />
           </div>
         </div>
       ) : (
