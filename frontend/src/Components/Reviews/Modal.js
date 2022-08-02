@@ -19,19 +19,22 @@ const Reviews = (props) => {
     document.body.classList.remove("active-modal");
   }
 
-  const reloadComponent = () => window.location.reload(false);
+  //const reloadComponent = () => window.location.reload(false);
 
   const submitReview = async (e) => {
     e.preventDefault();
     setModal(!modal);
-    reloadComponent();
+    //reloadComponent();
 
     try {
-      await axios.post("http://localhost:4000/products/:productId/review", {
-        userId: 1,
-        productId: props.productId,
-        text: text,
-      });
+      await axios.post(
+        `http://localhost:4000/products/${props.productId}/review`,
+        {
+          //we don't need to define productId here as we get it from request
+          rating: 4,
+          text: text,
+        }
+      );
     } catch (e) {
       console.log(e.message);
     }
